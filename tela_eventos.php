@@ -26,10 +26,9 @@ if (!securePage($_SERVER['PHP_SELF'])) {
 
 <?php
 
+$evento = $_POST['evento'];
 
-//$evento = $_POST['evento'];
-
-$contatos = $db->query("SELECT nome FROM contato WHERE evento LIKE 'Bradesco'");
+$contatos = $db->query("SELECT nome FROM contato WHERE evento LIKE ?", [$evento]);
 
 ?>
 
@@ -41,6 +40,7 @@ $contatos = $db->query("SELECT nome FROM contato WHERE evento LIKE 'Bradesco'");
 
 			<label for="nome">Participantes</label>
 			<p><?php print_r($contatos) ?></P>
+			<input type="submit">
 		</form>
 	</div>
 </div>
