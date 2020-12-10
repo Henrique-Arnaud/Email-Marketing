@@ -25,12 +25,12 @@ if (!securePage($_SERVER['PHP_SELF'])) {
 ?>
 
 <?php
-//php goes here
+ 
 ?>
 
 <div class="row">
 	<div class="col-sm-12">
-        <form action="tela_upload_lista.php" method="POST" enctype="multipart/form-data">
+        <form action="confirmacao_upload.php" method="POST" enctype="multipart/form-data">
         <input type="file" name="lista">
         <input type="submit" value="Fazer Upload">
         </form>
