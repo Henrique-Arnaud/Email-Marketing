@@ -95,3 +95,5 @@ ALTER TABLE `contato` ADD `evento` VARCHAR(50) NOT NULL AFTER `email`;
 
 
 CREATE TABLE userspice.eventos ( id INT NOT NULL AUTO_INCREMENT , nome VARCHAR(50) NOT NULL , empresa VARCHAR(30) NOT NULL , PRIMARY KEY (id)) ENGINE = InnoDB;
+
+https://userspice.com/documentation-db-class/
