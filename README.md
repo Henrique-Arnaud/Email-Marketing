@@ -91,3 +91,5 @@ Tela de Listagem de Contatos
 
 
 CREATE TABLE `userspice`.`contato` ( `id` INT NOT NULL AUTO_INCREMENT , `nome` VARCHAR(50) NOT NULL , `email` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+CREATE TABLE userspice.eventos ( id INT NOT NULL AUTO_INCREMENT , nome VARCHAR(50) NOT NULL , empresa VARCHAR(30) NOT NULL , PRIMARY KEY (id)) ENGINE = InnoDB;
