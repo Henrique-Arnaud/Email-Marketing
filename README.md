@@ -87,4 +87,6 @@ Criar tabela Configuracoes com os seguintes campos : Host,login/
 email,porta,senha e o evento
 
 Tela de Listagem de Contatos 
-	
+
+
+CREATE TABLE `userspice`.`contato` ( `id` INT NOT NULL AUTO_INCREMENT , `nome` VARCHAR(50) NOT NULL , `email` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
