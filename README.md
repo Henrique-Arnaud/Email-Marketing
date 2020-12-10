@@ -88,8 +88,10 @@ email,porta,senha e o evento
 
 Tela de Listagem de Contatos 
 
-
-
 CREATE TABLE `userspice`.`contato` ( `id` INT NOT NULL AUTO_INCREMENT , `nome` VARCHAR(50) NOT NULL , `email` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+ALTER TABLE `contato` ADD `evento` VARCHAR(50) NOT NULL AFTER `email`;
+
+
 
 CREATE TABLE userspice.eventos ( id INT NOT NULL AUTO_INCREMENT , nome VARCHAR(50) NOT NULL , empresa VARCHAR(30) NOT NULL , PRIMARY KEY (id)) ENGINE = InnoDB;
