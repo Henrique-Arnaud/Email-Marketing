@@ -18,24 +18,45 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 require_once 'users/init.php';
-require_once $abs_us_root.$us_url_root.'users/includes/template/prep.php';
+require_once $abs_us_root . $us_url_root . 'users/includes/template/prep.php';
 if (!securePage($_SERVER['PHP_SELF'])) {
     die();
 }
 ?>
 
 <?php
- 
+$nome_temporario = $_FILES['lista']['tmp_name'];
+
+$nome_real = $_FILES['lista']['name'];
+
+copy($nome_temporario, $nome_real);
+
+$arquivo = fopen($nome_real, "r");
+
+$header = fgetcsv($arquivo, 1000, ";");
+
+while ($row = fgetcsv($arquivo, 1000, ";")) {
+    $usuarios[] = array_combine($header, $row);
+}
+print_r($usuarios);
+
+fclose($arquivo);
+
+
+$resultado = $db->query("SELECT * FROM contato WHERE evento like 'treinamento'");
+
+foreach($usuarios as $usuario){
+    $db->insert('contato', $usuario);
+}
+
 ?>
 
 <div class="row">
-	<div class="col-sm-12">
-        <form action="confirmacao_upload.php" method="POST" enctype="multipart/form-data">
-        <input type="file" name="lista">
-        <input type="submit" value="Fazer Upload">
-        </form>
-	</div>
+    <div class="col-sm-12">
+        <input type="submit" onclick="" value="<?php echo $nome_real ?>">
+        <p> <?php print_r($resultado) ?> </p>
+    </div>
 </div>
 
 
-<?php require_once $abs_us_root.$us_url_root.'users/includes/html_footer.php'; ?>
+<?php require_once $abs_us_root . $us_url_root . 'users/includes/html_footer.php'; ?>
