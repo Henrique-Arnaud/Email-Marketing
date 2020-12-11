@@ -28,8 +28,8 @@ if (!securePage($_SERVER['PHP_SELF'])) {
 
 $evento = $_POST['evento'];
 
-$contatos = $db->query("SELECT nome FROM contato WHERE evento LIKE ?", [$evento]);
-
+$contatos = $db->query("SELECT nome FROM contato WHERE evento LIKE '%{$evento}%'");
+echo "SELECT nome FROM contato WHERE evento LIKE '%{$evento}%'";
 ?>
 
 <div class="row">
