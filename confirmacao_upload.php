@@ -45,13 +45,6 @@ fclose($arquivo);
 
 $resultado = $db->query("SELECT * FROM contato WHERE evento like 'treinamento'");
 
-$field = array(
-        'id' => '',
-        'nome' => 'roberto',
-        'email' => 'roberto@gmail.com',
-        'evento' => 'financeiro'
-);
-
 foreach($usuarios as $usuario){
     $db->insert('contato', $usuario);
 }
