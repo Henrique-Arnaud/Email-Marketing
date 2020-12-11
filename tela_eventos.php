@@ -1,4 +1,8 @@
 <?php
+
+// var_dump($_POST);
+// var_dump($_GET);
+
 /*
 UserSpice 5
 An Open Source PHP User Management System
@@ -26,21 +30,77 @@ if (!securePage($_SERVER['PHP_SELF'])) {
 
 <?php
 
-$evento = $_POST['evento'];
+if (!empty($_POST)) {
+	$id_evento = $_POST['select_evento'];
+	// echo "<br><br><br><br><br><br><br>";
+	// echo $id_evento;
+	// die();
+	$contatos = $db->query("SELECT * FROM contato WHERE id_evento = " . $id_evento)->results();
 
-$contatos = $db->query("SELECT nome FROM contato WHERE evento LIKE '%{$evento}%'");
-echo "SELECT nome FROM contato WHERE evento LIKE '%{$evento}%'";
+	// dump($contatos);
+	// echo "--------------------";
+
+	
+}
+
+$eventos_ativos = $db->query("SELECT * FROM eventos")->results();
+//  dump($eventos_ativos);
+// die();
+
+// echo "SELECT nome FROM contato WHERE evento LIKE '%{$evento}%'";
 ?>
 
+<br>
+<br>
+<br>
+<br>
 <div class="row">
 	<div class="col-sm-12">
-		<form method="POST">
+		<form name="form" method="POST" action="tela_eventos.php" enctype="multipart/form-data">
 			<label for="evento">Evento</label>
-			<input type="text" id="evento" name="evento"><br>
+			<!-- <input type="text" id="evento" name="evento"><br> -->
+			<select name="select_evento" id="select_evento">
 
-			<label for="nome">Participantes</label>
-			<p><?php print_r($contatos) ?></P>
-			<input type="submit">
+				<?php
+				foreach ($eventos_ativos as $event_row) {
+					// echo '1';
+					$select = "selected"
+
+				?>
+
+					<option  <?=$select   value="<?= $event_row->id ?>"><?= $event_row->nome . "(" . $event_row->empresa . ")" ?></option>
+
+				<?php } ?>
+			</select>
+
+			<input type="submit" value="buscarconvidados">
+
+
+	<h1>Participantes</h1>
+
+<table>
+<?php 
+if (!empty($_POST)) {
+
+foreach($contatos as $contato){
+?>
+
+
+	<tr>
+		<td><?=$contato->nome?></td>
+		<td><?=$contato->id?></td>
+		<td><?=$contato->email?></td>
+		
+	</tr>
+
+
+
+<?php 
+}
+}
+?>
+</table>
+
 		</form>
 	</div>
 </div>

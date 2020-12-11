@@ -36,6 +36,9 @@ $arquivo = fopen($nome_real, "r");
 $header = fgetcsv($arquivo, 1000, ";");
 
 while ($row = fgetcsv($arquivo, 1000, ";")) {
+
+
+    
     $usuarios[] = array_combine($header, $row);
 }
 print_r($usuarios);
@@ -43,7 +46,7 @@ print_r($usuarios);
 fclose($arquivo);
 
 
-$resultado = $db->query("SELECT * FROM contato WHERE evento like 'treinamento'");
+// $resultado = $db->query("SELECT * FROM contato WHERE evento like 'treinamento'");
 
 foreach($usuarios as $usuario){
     $db->insert('contato', $usuario);
@@ -54,7 +57,7 @@ foreach($usuarios as $usuario){
 <div class="row">
     <div class="col-sm-12">
         <input type="submit" onclick="" value="<?php echo $nome_real ?>">
-        <p> <?php print_r($resultado) ?> </p>
+        <!-- <p> <?php// print_r($resultado) ?> </p> -->
     </div>
 </div>
 
