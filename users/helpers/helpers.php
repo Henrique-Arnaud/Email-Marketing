@@ -208,7 +208,18 @@ if (!function_exists('email')) {
   if ($attachment !== null) {
     $mail->addAttachment($attachment);
   }
+  
+  //Habilitar SSL
+	$mail->SMTPOptions = array(
+    'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+    )
+);
+  
   $result = $mail->send();
+
 
   return $result;
 }
