@@ -1,13 +1,72 @@
-1. Copy the contents of this zip to your web folder
+<form method="post">
+			<h3></label>Selecione o Evento desejado:</h3>
 
-2. Make sure you have your database username and password handy. You can either create a DB in advance or allow UserSpice to try to do it for you.
+			<select name="evento" class="custom-select custom-select-lg mb-3">
+				<?php foreach ($lista_eventos as $linha_evento) {
+					//aqui eu faço o contador rolar e ver em qual verificação do foreach ele está
+					$cont++; ?>
+					<!--Aqui nesse if eu vejo se o selecionado corresponde ao elemento lido no foreach, caso true eu deixo ele Selecionado -->
+					<option <?php if ($selecionado == $cont) {
+								echo 'Selected';
+							} ?> value="<?php echo $linha_evento->id ?>"><?php echo $linha_evento->nome ?></option>
+				<?php } ?>
+			</select>
 
-3. Navigate to the web folder you copied to the files to with your web browser and follow the on screen instructions.
+			<input type="submit" value="Selecionar Dados" class="btn btn-dark">
 
-4. Documentation can be found at https://UserSpice.com/kb
-
-5. You can get help online at our Discord Server https://discord.gg/PMNquvh
-
-6. After installing, you can login as administrator with the credentials admin and password
-You can also login as a "regular" user with the credentials user and password
-Please change these credentials.
+		</form>
+		<form method="post">
+			<table style="margin-top: 5%;" class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">
+							ID
+						</th>
+						<th scope="col">
+							Nome
+						</th>
+						<th scope="col">
+							Email
+						</th>
+						<th scope="col">
+							Evento
+						</th>
+						<th scope="col">
+							Empresa
+						</th>
+						<th scope="col">
+							
+						</th>
+					</tr>
+				</thead>
+				<?php
+				if (!empty($_POST['evento'])) {
+					foreach ($contatos as $contato) { ?>
+						<tr>
+							<td>
+								<?php echo $contato->id ?>
+							</td>
+							<td>
+								<input type="text" name="contato_nome" class="form-control-plaintext" value="<?php echo $contato->contato_nome ?>">
+							</td>
+							<td>
+								<input type="text" name="email" class="form-control-plaintext" value="<?php echo $contato->email ?>">
+							</td>
+							<td>
+								<input type="text" name="evento_nome" class="form-control-plaintext" value="<?php echo $contato->evento_nome ?>">
+							</td>
+							<td>
+								<input type="text" name="empresa" class="form-control-plaintext" value="<?php echo $contato->empresa ?>">
+							</td>
+							<td>	
+								<span class="fa fa-trash btn btn-dark"></span>
+							</td>
+						</tr>
+				<?php }
+				}
+				?>
+			</table>
+			<div>
+				<input <?php if(!empty($_POST['evento'])) echo 'type="submit"' ?> name="btn_edit" value="Editar Dados" class="btn btn-dark">
+			</div>
+		</form>
